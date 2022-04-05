@@ -1,22 +1,7 @@
-import React,{Component} from "react";
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Header from "./header";
-export default function App() {
-  return (
-    <View style={styles.container}>
-       <Header title="Users App"></Header>
-      <Text>Test App</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import React from 'react';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent:'flex-start'
-  },
-});
+import Home from './src/screens/homeScreen';
+
+export default function App() {
+  return <Home />;
+}
