@@ -10,6 +10,7 @@ const userCard = ({ info }) => {
         <View style={styles.container}>
             <View style={styles.cardContainer}>
                 <View style={styles.infoStyle}>
+                    <Text style={styles.loginStyle}>Tst Sanaa</Text>
                     <Text style={styles.loginStyle}>{login}</Text>
                     <Text style={styles.idStyle}>{id}</Text>
 
