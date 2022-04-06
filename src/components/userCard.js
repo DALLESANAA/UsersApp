@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions,Button } from 'react-native';
 
 
-const iconColor = '#6c5ce7';
 const userCard = ({ info, navigation }) => {
     const { login, id } = info;
 
@@ -10,9 +9,9 @@ const userCard = ({ info, navigation }) => {
         <View style={styles.container}>
             <View style={styles.cardContainer}>
                 <View style={styles.infoStyle}>
-                    <Text style={styles.loginStyle}>Tst Sanaa</Text>
-                    <Text style={styles.loginStyle}>{login}</Text>
-                    <Text style={styles.idStyle}>{id}</Text>
+                    <Text style={styles.idStyle}>Id :{id}</Text>
+                    <Text style={styles.loginStyle}>Name : {login}</Text>
+
                 </View>
             </View>
         </View>
@@ -30,28 +29,19 @@ const styles = StyleSheet.create({
     },
     cardContainer: {
         width: deviceWidth - offset,
-        backgroundColor: '#D3D3D3',
-        height: 200,
+        backgroundColor: '#F2F6FF',
+        height: 120,
         borderRadius: radius,
-
         shadowColor: '#000',
         shadowOffset: {
-            width: 5,
-            height: 5,
+            width: 2,
+            height: 2,
         },
         shadowOpacity: 0.75,
         shadowRadius: 5,
-        elevation: 9,
+        elevation: 3,
     },
-    imageStyle: {
-        height: 130,
-        width: deviceWidth - offset,
-        borderTopLeftRadius: radius,
-        borderTopRightRadius: radius,
-        opacity: 0.9,
-        alignContent: 'center',
-        alignSelf: 'center',
-    },
+
     loginStyle: {
         fontSize: 20,
         fontWeight: '800',
@@ -63,6 +53,9 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         marginVertical: 5,
     },
+    followersStyle: {
+        fontWeight: '600',
+    }
 });
 
 export default userCard;

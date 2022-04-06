@@ -2,7 +2,6 @@ import React from 'react';
 import { View, StyleSheet, Text, Dimensions } from 'react-native';
 
 const Header = ({ label }) => {
-    // console.log(label);
 
     return (
         <View style={styles.container}>
@@ -16,8 +15,8 @@ const deviceWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
     container: {
         width: deviceWidth,
-        height: 90,
-        backgroundColor: '#a29bfe',
+        height: 70,
+        backgroundColor: '#FFFFFF',
         justifyContent: 'flex-end',
         paddingBottom: 20,
         alignItems: 'center',

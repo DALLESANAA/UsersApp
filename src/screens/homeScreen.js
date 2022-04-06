@@ -1,36 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, StatusBar, FlatList,Button } from 'react-native';
 import Header from '../components/header';
 import Card from '../components/userCard';
 
 
-const users = [
-    {
-        login: "mojombo",
-        id: 1,
-        avatar_url: "https://avatars.githubusercontent.com/u/1?v=4",
-        url: "https://api.github.com/users/mojombo",
-        html_url: "https://github.com/mojombo",
-        followers_url: "https://api.github.com/users/mojombo/followers",
-        following_url: "https://api.github.com/users/mojombo/following{/other_user}",
-    },
-    {
-        login: "defunkt",
-        id: 2,
-        avatar_url: "https://avatars.githubusercontent.com/u/2?v=4",
-        url: "https://api.github.com/users/defunkt",
-        html_url: "https://github.com/defunkt",
-        followers_url: "https://api.github.com/users/defunkt/followers",
-        following_url: "https://api.github.com/users/defunkt/following{/other_user}",
-    },
-];
-
- 
 const HomeScreen = ({navigation}) => {
+
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        getUsers();
+    }, []);
+    
+    const getUsers = () => {
+        fetch('https://api.github.com/users')
+            .then(function (response) {
+                return response.json();
+            }).then(function (response) {
+                setUsers(response);
+            });
+    };
+    
+
+    
     return (
         <View style={styles.container}>
             <Header label="Users App" />
-            {/* <Card /> */}
             <StatusBar barStyle="dark-content" />
 
             <FlatList
@@ -41,9 +35,10 @@ const HomeScreen = ({navigation}) => {
                         <Card info={item} /> 
 
                         <Button title="Voir les détails" 
+                        
                         onPress={() => navigation.navigate('Details', {
                             userlogin:item.login,
-                            avatar:item.avatar_url
+                            avatar:item.avatar_url,
                         })}
                         
                         />
@@ -53,10 +48,6 @@ const HomeScreen = ({navigation}) => {
                 keyExtractor={(user) => user.id.toString()}
                 showsVerticalScrollIndicator={false}
                 />
-                  <Button
-                        title="Go to Details"
-                        onPress={() => navigation.navigate('Details')}
-                />
 
         </View>
     );
@@ -65,10 +56,13 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#6c5ce7',
+        backgroundColor: '#ffffff',
         alignItems: 'center',
-        // justifyContent: 'center',
     },
+    buttonStyle:{
+       backgroundColor:'#ffffff',
+    }
+    
 });
 
 export default HomeScreen;
