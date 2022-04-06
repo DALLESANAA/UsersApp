@@ -1,35 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, StatusBar, FlatList } from 'react-native';
+
 
 import Header from '../components/header';
 import Card from '../components/userCard';
 
+const HomeScreen = ({ navigation }) => {
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        getUsers();
+    }, []);
 
-const users = [
-    {
-        login: "mojombo",
-        id: 1,
-        avatar_url: "https://avatars.githubusercontent.com/u/1?v=4",
-        url: "https://api.github.com/users/mojombo",
-        html_url: "https://github.com/mojombo",
-        followers_url: "https://api.github.com/users/mojombo/followers",
-        following_url: "https://api.github.com/users/mojombo/following{/other_user}",
-    },
-    {
-        login: "defunkt",
-        id: 2,
-        avatar_url: "https://avatars.githubusercontent.com/u/2?v=4",
-        url: "https://api.github.com/users/defunkt",
-        html_url: "https://github.com/defunkt",
-        followers_url: "https://api.github.com/users/defunkt/followers",
-        following_url: "https://api.github.com/users/defunkt/following{/other_user}",
-    },
-];
-const HomeScreen = () => {
+
+    const getUsers = () => {
+        fetch('https://api.github.com/users')
+            .then(function (response) {
+                return response.json();
+            }).then(function (response) {
+                setUsers(response);
+            });
+    };
+
+
+
+    /*
+    const users = [
+        {
+            login: "mojombo",
+            id: 1,
+            avatar_url: "https://avatars.githubusercontent.com/u/1?v=4",
+            url: "https://api.github.com/users/mojombo",
+            html_url: "https://github.com/mojombo",
+            followers_url: "https://api.github.com/users/mojombo/followers",
+            following_url: "https://api.github.com/users/mojombo/following{/other_user}",
+        },
+        {
+            login: "defunkt",
+            id: 2,
+            avatar_url: "https://avatars.githubusercontent.com/u/2?v=4",
+            url: "https://api.github.com/users/defunkt",
+            html_url: "https://github.com/defunkt",
+            followers_url: "https://api.github.com/users/defunkt/followers",
+            following_url: "https://api.github.com/users/defunkt/following{/other_user}",
+        },
+    ];
+    */
+
     return (
         <View style={styles.container}>
             <Header label="Users App" />
-            {/* <Card /> */}
+
             <StatusBar barStyle="dark-content" />
 
             <FlatList
@@ -37,14 +57,14 @@ const HomeScreen = () => {
                 renderItem={({ item }) => {
                     return <Card info={item} />;
                 }}
-                keyExtractor={(user) => user.id.toString()}
+                keyExtractor={(userData) => userData.id.toString()}
                 showsVerticalScrollIndicator={false}
             />
 
         </View>
     );
-};
 
+};
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -53,4 +73,5 @@ const styles = StyleSheet.create({
         // justifyContent: 'center',
     },
 });
+
 export default HomeScreen;
