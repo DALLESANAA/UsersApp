@@ -39,8 +39,12 @@ const HomeScreen = ({navigation}) => {
                     return (
                     <View>
                         <Card info={item} /> 
+
                         <Button title="Voir les détails" 
-                        onPress={() => navigation.navigate('Details')}
+                        onPress={() => navigation.navigate('Details', {
+                            userlogin:item.login,
+                            avatar:item.avatar_url
+                        })}
                         
                         />
                    </View>
