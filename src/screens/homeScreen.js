@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, FlatList } from 'react-native';
-
+import { StyleSheet, Text, View, StatusBar, FlatList,Button } from 'react-native';
 import Header from '../components/header';
 import Card from '../components/userCard';
 
@@ -25,7 +24,9 @@ const users = [
         following_url: "https://api.github.com/users/defunkt/following{/other_user}",
     },
 ];
-const HomeScreen = () => {
+
+ 
+const HomeScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <Header label="Users App" />
@@ -35,11 +36,23 @@ const HomeScreen = () => {
             <FlatList
                 data={users}
                 renderItem={({ item }) => {
-                    return <Card info={item} />;
+                    return (
+                    <View>
+                        <Card info={item} /> 
+                        <Button title="Voir les détails" 
+                        onPress={() => navigation.navigate('Details')}
+                        
+                        />
+                   </View>
+                    );
                 }}
                 keyExtractor={(user) => user.id.toString()}
                 showsVerticalScrollIndicator={false}
-            />
+                />
+                  <Button
+                        title="Go to Details"
+                        onPress={() => navigation.navigate('Details')}
+                />
 
         </View>
     );
@@ -53,4 +66,5 @@ const styles = StyleSheet.create({
         // justifyContent: 'center',
     },
 });
+
 export default HomeScreen;

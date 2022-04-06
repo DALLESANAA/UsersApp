@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions,Button } from 'react-native';
 
 
 const iconColor = '#6c5ce7';
-const userCard = ({ info }) => {
+const userCard = ({ info, navigation }) => {
     const { login, id } = info;
 
     return (
@@ -13,7 +13,6 @@ const userCard = ({ info }) => {
                     <Text style={styles.loginStyle}>Tst Sanaa</Text>
                     <Text style={styles.loginStyle}>{login}</Text>
                     <Text style={styles.idStyle}>{id}</Text>
-
                 </View>
             </View>
         </View>
