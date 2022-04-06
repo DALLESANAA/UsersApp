@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect,useState} from 'react'
 import { Button,StyleSheet, View, Text , ScrollView, FlatList} from 'react-native';
 import { TextInput } from 'react-native-web';
 import Header from './header';
@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 
 export default function Home({navigation}) {
     const [users,setUsers]=useState([
-        {id:1,name:"ileas elgalta", tel:"0615615636", email:"ileaselgalta@gmail.com"},
+       /* {id:1,name:"ileas elgalta", tel:"0615615636", email:"ileaselgalta@gmail.com"},
         {id:2,name:"simo lkamel", tel:"069874655", email:"lkaml@gmail.com"},
         {id:3,name:"ahmed", tel:"062221588", email:"ahmed@gmail.com"},
         {id:4,name:"ileas elgalta", tel:"0615615636", email:"ileaselgalta@gmail.com"},
@@ -19,7 +19,7 @@ export default function Home({navigation}) {
         {id:6,name:"ahmed", tel:"062221588", email:"ahmed@gmail.com"},
         {id:7,name:"ileas elgalta", tel:"0615615636", email:"ileaselgalta@gmail.com"},
         {id:8,name:"simo lkamel", tel:"069874655", email:"lkaml@gmail.com"},
-        {id:9,name:"ahmed", tel:"062221588", email:"ahmed@gmail.com"}
+        {id:9,name:"ahmed", tel:"062221588", email:"ahmed@gmail.com"}*/
     ])
     const deleteItems=(id)=>{
        console.log(id)
@@ -27,9 +27,19 @@ export default function Home({navigation}) {
         return person.filter(item=>item.id != id)
        })
     }
+    const getUsers = () => {
+      fetch('https://api.github.com/users')
+          .then(function (response) {
+              return response.json();
+          }).then(function (response) {
+            setUsers(response);
+          });
+  };
+     useEffect(() => {
+        getUsers();
+      }, []);
 
-    const funcNav=()=>{
-    }
+   
   return (
     <View style={styles.container}>
       <Header/>
@@ -41,7 +51,8 @@ export default function Home({navigation}) {
      renderItem={({item}) => (
        <TouchableOpacity onPress={()=>navigation.navigate('reviewDetails',item)}>
       <View style={styles.item} >
-      <Text >{item.name}</Text>
+      <Text >{item.login}</Text>
+      <Text >{item.type}</Text>
           </View>   
     <Button title='Delete' onPress={()=>deleteItems(item.id)}/>
      
