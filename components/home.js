@@ -36,17 +36,14 @@ export default function Home({navigation}) {
       
       <View style={styles.content}>
      <FlatList
-     numColumns={2}
      keyExtractor={(item)=>item.id}
      data={users} 
      renderItem={({item}) => (
        <TouchableOpacity onPress={()=>navigation.navigate('reviewDetails',item)}>
       <View style={styles.item} >
       <Text >{item.name}</Text>
-      
-      <Button title='Delete' onPress={()=>deleteItems(item.id)}/>
-      <Text>-------------------------------------------------------</Text>
-    </View>   
+          </View>   
+    <Button title='Delete' onPress={()=>deleteItems(item.id)}/>
      
        </TouchableOpacity>
        

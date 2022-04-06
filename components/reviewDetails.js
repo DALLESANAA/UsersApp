@@ -1,5 +1,5 @@
 import React from 'react'
-import { View,Text,Button } from 'react-native-web';
+import { View,Text,Button,StyleSheet } from 'react-native';
 
 export default function reviewDetails({navigation}) {
     const funcNav=()=>{
@@ -7,11 +7,22 @@ export default function reviewDetails({navigation}) {
     }
   return (
       <View>
+ <View style={styles.item}>
           <Text>{navigation.getParam('name')}</Text>
           <Text>{navigation.getParam('tel')}</Text>
           <Text>{navigation.getParam('email')}</Text>
-<Button title='go to home' onPress={funcNav}/>
-
       </View>
+          <Button title='go to home' onPress={funcNav}/>
+      </View>
+     
+
   )
 }
+const styles=StyleSheet.create({
+    item:{
+        marginTop:24,
+        padding:30,
+        backgroundColor:'pink',
+        fontSize:24
+        }
+})
