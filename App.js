@@ -1,22 +1,24 @@
-import React,{Component} from "react";
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Header from "./header";
-export default function App() {
-  return (
-    <View style={styles.container}>
-       <Header title="Users App"></Header>
-      <Text>Test App</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import  React,{useState}  from 'react';
+import { Button,StyleSheet, View, Text , ScrollView, FlatList} from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native-web';
+import Header from './components/header';
+import Home from './components/home';
+import Navigator from './routes/homeStack'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent:'flex-start'
-  },
-});
+
+
+
+function App() {
+  const [name,setName]=useState('ileas')
+  const updateName= () =>{
+    setName('ileas elgalta')
+  }
+  
+  return (
+    <Navigator/>
+   
+     );
+       }
+
+
+export default App;
