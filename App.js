@@ -1,6 +1,6 @@
 import  React,{useState}  from 'react';
 import { Button,StyleSheet, View, Text , ScrollView, FlatList} from 'react-native';
-import { TextInput, TouchableOpacity } from 'react-native-web';
+import { TextInput, TouchableOpacity } from 'react-native';
 import Header from './components/header';
 import Home from './components/home';
 import Navigator from './routes/homeStack'
@@ -13,10 +13,11 @@ function App() {
   const updateName= () =>{
     setName('ileas elgalta')
   }
-  
+
   return (
-    <Navigator/>
    
+    <Navigator/>
+    
      );
        }
 

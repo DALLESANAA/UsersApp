@@ -1,11 +1,11 @@
 import React, {useEffect,useState} from 'react'
-import { View,Text,Button,StyleSheet,FlatList } from 'react-native';
+import { View,Text,Button,StyleSheet,FlatList , Image} from 'react-native';
 
 export default function reviewDetails({navigation}) {
     const funcNav=()=>{
         navigation.goBack()
     }
-    const [folowers,setFolowers]=useState([])
+    const [folows,setFolowers]=useState([])
         const getFolowers = () => {
         fetch('https://api.github.com/users/'+navigation.getParam('login'))
             .then(function (response) {
@@ -17,24 +17,18 @@ export default function reviewDetails({navigation}) {
        useEffect(() => {
         getFolowers();
         }, []);
+
   
   return (
+      
       <View>
+
  <View style={styles.item}>
+         <Image style={{height:300 , width:300}} source={{ uri:navigation.getParam('avatar_url') }}/>
           <Text>{navigation.getParam('login')}</Text>
           <Text>{navigation.getParam('type')}</Text>
-          <Text>{navigation.getParam('url')}</Text>
-          <FlatList
-     keyExtractor={(item)=>item.id}
-     data={folowers} 
-     renderItem={({item}) => (
-       <TouchableOpacity>
-      <Text >{item.followers}</Text>
-       </TouchableOpacity>
-       
-       
-     )} />
-          
+         
+         <Text> {folows.followers}</Text>
       </View>
           <Button title='go to home' onPress={funcNav}/>
       </View>

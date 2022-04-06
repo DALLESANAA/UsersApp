@@ -1,8 +1,7 @@
 import React, {useEffect,useState} from 'react'
-import { Button,StyleSheet, View, Text , ScrollView, FlatList} from 'react-native';
-import { TextInput } from 'react-native-web';
+import { Image, Button,StyleSheet, View, Text , ScrollView, FlatList} from 'react-native';
 import Header from './header';
-import { TouchableOpacity } from 'react-native-web';
+import { TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -61,19 +60,7 @@ export default function Home({navigation}) {
        
      )} />
 
-     {/*<ScrollView>
-     {users.map((user)=>(
-       
-         <View style={styles.item}  key={user.id}>
-           <Text >{user.name}</Text>
-           <Text>{user.tel}</Text>
-           <Text>{user.email}</Text>
-           <Text>-------------------------------------------------------</Text>
-         </View>
-       
-     ))}
-     </ScrollView>
-     */}
+   
      </View>
    </View>
    
